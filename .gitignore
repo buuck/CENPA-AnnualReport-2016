@@ -21,6 +21,8 @@ Construction/MakeArticle.pdf
 # *.ps
 # *.eps
 # *.pdf
+SA/MakeArticle.pdf
+Construction/MakeArticle.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
