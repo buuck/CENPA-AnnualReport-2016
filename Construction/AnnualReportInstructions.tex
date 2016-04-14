@@ -1,0 +1,186 @@
+
+\documentclass[twoside,11pt]{article}
+\textwidth 6.1in 			%fullpage is 6.5
+\textheight 8.9in 			%fullpage is 8.9
+\addtolength{\topmargin} {-.2in}
+\setlength{\oddsidemargin}{0.4in}
+\setlength{\evensidemargin}{0cm}
+\setlength{\parskip}{.7\baselineskip}
+
+\pagestyle{myheadings}
+
+\begin{document}
+
+\begin{centering}
+\Large{\bf Instructions for preparing annual report articles}\\
+1 March 2016\\
+Gary Holman\\
+\end{centering}
+
+\section{Files in this package}
+
+\begin{itemize}
+\item AnnualReportInstructions.pdf~~ (this file)
+\item ExampleArticle.tex~~ (an example article, correctly formatted, using several of the special features and liberally commented - use MakeArticle.tex to typeset this file)
+\item ExampleBullets.tex~~ (self descriptive, of interest to the faculty only for the INTRO)
+\item ExamplePublications.tex~~  (examples of formats for various publications - use \\  MakePublicationList.tex to typeset this file)
+\item ExampleTitleList.tex~~  (examples of correctly formatted titles and author lists - use MakeTitleList.tex to typeset this file)
+\item examplefig.eps~~  (example figure to be used in the example article, ExampleArticle.tex)
+\item MakePublicationList.tex~~  (Use this file to typeset the example publication list - \\  ExamplePublications.tex)
+\item MakeTitleList.tex~~  (Use this file to typeset the example title list - ExampleTitleList.tex)
+\item MakeArticle.tex~~  (Use this file to typeset the example article - ExampleArticle.tex)
+\item preamble2016.tex~~ (this is a required file which describes the CENPA Annual Report typeset environment)
+\end{itemize}
+
+\section{Formatting your articles}
+
+\noindent
+The current annual report article format has been in place since 2010 so I WILL RETURN improperly formatted articles. There is nothing difficult about doing this correctly.
+
+\noindent
+For your article, use the formatting of the ExampleArticle.tex file and provide a FULLY and CORRECTLY initialed author list or I WILL return it to you. If you have any questions or if you want a copy of one of your articles that is correctly formatted from last year, please ask Gary (holman@uw.edu).
+
+\section{Annual report article titles}
+
+Annual report article titles are due first, usually a couple of weeks before the articles. There is an example of some titles, with author lists, that are correctly formatted in the file \\ ExampleTitleList.tex. If you want to typeset it to see the pdf version, typeset the file \\ MakeTitleList.tex. Your title should look something like this:
+
+\begin{verbatim}
+\subsection{Your article title goes here \label{yourArticleLabel}} 
+\end{verbatim}
+
+\noindent
+List authors alphabetically, using the format in ExampleArticle.tex or ExampleTitleList.tex and use the 
+
+\begin{verbatim} 
+\auth{your correctly initialed and formatted author list goes here} 
+\end{verbatim} 
+
+\noindent
+command. The command is specific to our annual report and it's there for a reason. If there are more than one author, underline the author who is writing the article. Provide a FULLY and CORRECTLY initialed and formatted author list.
+
+
+\section{Annual report publications}
+
+A list of your publications for the year are due at the same time as your annual report articles. Examples showing the correct formatting for publications, invited talks, books, patent applications, and PhD theses are given in the file ExamplePublications.tex. If you want to typeset it to see the pdf version, typeset the file MakePublicationList.tex.
+
+
+\section{Annual report articles}
+
+In the past we requested that articles be one page or shorter unless there is some really good reason to make them longer. This had to do mostly with footnotes repeating across page and article boundaries. This is no longer a problem so articles can be any length but the one page limit is still a good one to follow if possible. Articles should report only progress, not plans. The time period is March of previous year-March of this year. You can typeset the file ExampleArticle.tex using MakeArticle.tex
+
+
+\subsection{How to use footnotes}
+
+Using footnotes is described very thoroughly in the file ExampleArticle.tex. To footnote an author affiliation in your author list, use
+
+\begin{verbatim}
+\footnoteAuthor{affiliation text} 
+\end{verbatim}
+
+\noindent
+To repeat an affiliation footnote for several authors with the same affiliation, use 
+
+\begin{verbatim}
+\footnoteAuthor[n]{affiliation text}
+\end{verbatim}
+
+\noindent
+where n begins at 1 and increments for each new affiliation. Use 
+
+\begin{verbatim}
+\footnotemarkAuthor[n] 
+\end{verbatim}
+
+\noindent
+to recall footnote n for other authors of the same affiliation. To footnote text, use
+
+\begin{verbatim}
+\footnoteText{footnote text to display}  
+\end{verbatim}
+
+\noindent
+If you have a footnote that you will need to repeat, use
+
+\begin{verbatim}
+\footnoteText{\label{thisfoot}footnote text to display} 
+\end{verbatim}
+
+\noindent
+and use 
+
+\begin{verbatim}
+\footref{thisfoot} 
+\end{verbatim}
+
+\noindent
+to recall the footnote later in the text.
+
+\subsection{How to use figures, tables, and captions}
+
+Using figures and tables is explained clearly in the file ExampleArticle.tex. Please provide figures in .pdf, .jpeg, .png, or .eps formats if possible. Label your figure or table with something likely to be unique to the annual report.  Everybody will have a ``figure1'' so use your initials or something else you will recognize.  For example, GCHfig1 would work for me or something like He6ProductionVsBeamCurrent which is very descriptive.
+
+\noindent
+You MUST place an article label within your title argument as in: 
+
+\begin{verbatim}
+\subsection{Your article title goes here \label{yourArticleLabel}} 
+\end{verbatim}
+
+\noindent
+Then, use these commands to reference figures and tables:
+
+\begin{verbatim}
+\figref{yourArticleLabel}{yourFigureLabel}
+\tabref{yourArticleLabel}{yourTableLabel}
+\end{verbatim}
+
+\noindent
+Do not use the words fig., tab., figure, or table in your text when referencing figures or tables. The above commands do that automatically and consistently throughout the report. These commands will correctly number the tables and figures at any level (section, subsection, subsubsection, or paragraph). Using these commands, figures and tables can also be cross-referenced across articles. 
+
+\newpage
+\noindent
+DO NOT use the LaTeX caption command because our caption format is special. Instead, for your captions, use  the commands
+
+\begin{verbatim}
+\figcaption{yourArticleLabel}{your figure caption text} 
+\tabcaption{yourArticleLabel}{your table caption text} 
+\end{verbatim}
+
+\subsection{How to reference another annual report section}
+
+To refer to another section in the annual report, use the command
+
+\begin{verbatim}
+\secref{othersectionlabel} 
+\end{verbatim}
+
+\noindent
+where {othersectionlabel} is the label in the title of the section being referenced.
+
+\subsection{How to use the example files}
+
+To use ExampleArticle.tex with the figure:
+
+\begin{enumerate}
+\item Copy examplefig.eps, preamble2016.tex, ExampleArticle.tex and MakeArticle.tex to the same directory.
+\item Typeset using MakeArticle.tex
+\end{enumerate}
+
+\noindent
+To use ExamplePublications.tex:
+
+\begin{enumerate}
+\item Copy preamble2016.tex, ExamplePublications.tex and MakePublicationList.tex to the same directory.
+\item Typeset using MakePublicationList.tex
+\end{enumerate}
+
+\noindent
+To use ExampleTitleList.tex:
+
+\begin{enumerate}
+\item Copy preamble2016.tex, ExampleTitleList.tex and MakeTitleList.tex to the same directory.
+\item Typeset using MakeTitleList.tex
+\end{enumerate}
+
+
+\end{document}

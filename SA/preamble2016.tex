@@ -1,0 +1,256 @@
+%-----------------------------------------------------------------
+%  preamble2016.tex 
+%
+% UW CENPA Annual Report 
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+% Document Structure
+%-----------------------------------------------------------------
+\documentclass[twoside,11pt]{article}
+\textwidth 6.1in 			%fullpage is 6.5
+\textheight 8.5in 			%fullpage is 8.9
+\addtolength{\topmargin} {-.2in}
+\setlength{\oddsidemargin}{0.4in}
+\setlength{\evensidemargin}{0cm}
+\setlength{\parskip}{.7\baselineskip}
+%
+% Stop latex from re-creating aux, toc, etc. files
+% generally used if you manually created toc or to debug
+% \nofiles
+
+%-----------------------------------------------------------------
+% Title - header
+%-----------------------------------------------------------------
+\pagestyle{myheadings}
+\markright{\hspace*{\fill} UW CENPA Annual Report 2015-2016  \hspace{\fill} 
+DRAFT \hspace{\fill} \today \hspace{\fill}	         % this line for drafts, switch to next line for final
+%April 2016 \hspace{\fill}                           % this line for final. set correct year !!!!
+}	                                                 % Leave this bracket on a line by itself for convenience.
+
+
+
+%-----------------------------------------------------------------
+%
+%         WATERMARK SECTION - COMMENT OUT FOR FINAL DRAFT
+%
+% This section puts a watermark on each page. Comment this section for the final draft.
+%
+%-----------------------------------------------------------------
+% Start Draft Watermark and frame
+%-----------------------------------------------------------------
+\usepackage{draftwatermark}
+\SetWatermarkText{CENPA Annual Report DRAFT}
+\SetWatermarkScale{2}
+
+%\usepackage{showframe}
+%-----------------------------------------------------------------
+% End Draft Watermark
+%-----------------------------------------------------------------
+
+%-----------------------------------------------------------------
+% Packages 
+%-----------------------------------------------------------------
+% Graphics
+% epstopdf is required when using pdfLaTex typesetting.
+\usepackage{graphicx,epstopdf}
+
+% Subfigure
+% Not needed unless you use a subfigure.  So if you don't have it, comment this line out.
+%\usepackage{subfigure}
+	
+% Simple url inclusion		
+\usepackage{url} 
+                                
+% Mathmode sub and superscript font package
+\usepackage{amstext} 
+
+
+% Amssymb
+% this mathmode package was only used for Andreas Knecht's article, AR2011, sec 7.3
+%\usepackage{amssymb}	
+
+% Footnoting packages
+%
+% manyfoot:	provides for multiple footnote declarations
+% footmisc:	provides extended fnsymbol footnote list
+% perpage:	provides automatic footnote counter resets when needed. 
+%	
+
+\usepackage{manyfoot}
+\usepackage[stable]{footmisc}
+\usepackage{perpage}
+
+% Multi-column packages for the personnel section
+%
+% multicol: 	provides lists that spans multiple columns
+% paralist :	provides /compactitem - removing extra spaces in list output
+%
+\usepackage{multicol}
+\usepackage{paralist}
+\usepackage{longtable}
+
+% wrapfig is a text wrapping utility that Duncan used in AR2013, sec 6.5
+%
+%\usepackage{wrapfig}
+
+%-----------------------------------------------------------------
+%PATH Stuff
+%-----------------------------------------------------------------
+\graphicspath{{figures/}{ch1/}{ch2/}{ch3/}{ch4/}{ch5/}{ch6/}{ch7/}{ch8/}{ch9/}{ch10/}{ch11/}}
+ \makeatletter
+\def\input@path{{.}{ch1/}{ch2/}{ch3/}{ch4/}{ch5/}{ch6/}{ch7/}{ch8/}{ch9/}{ch10/}{ch11/}}
+ \makeatother
+
+%-----------------------------------------------------------------
+% Footnotes 
+%-----------------------------------------------------------------
+% Footnotes in author lists, produces symbols
+\DeclareNewFootnote{Author}[fnsymbol]  
+% Footnotes in text, produces numbers   
+\DeclareNewFootnote{Text}[arabic]
+% Special footnotes in text to span entire articles (not perpage)             
+\DeclareNewFootnote{Misc}[arabic]             
+
+% Makes the author footnotes renumber on a per page basis
+\MakePerPage{footnoteAuthor}  
+% Makes the text footnotes renumber on a per page basis                  
+\MakePerPage{footnoteText}                        
+
+% Make a special CENPA footnote to easily refer to past annual reports by YEAR and PAGE.
+\newcommand{\CENPAfoot}[2]{\footnoteText{CENPA Annual Report, University of Washington (#1)  p.~#2.}}
+
+% The following two commands are MACROs to repeat the same footnote within an article.
+% They are obsolete with the new footnote system
+%\newcommand{\footnoteremember}[2]{\footnote{#2}\newcounter{#1}\setcounter{#1}{\value{footnote}}}
+%\newcommand{\footnoterecall}[1]{\footnotemark[\value{#1}]}
+
+%-----------------------------------------------------------------
+% Subsection setup 
+%-----------------------------------------------------------------
+
+% More stuff for subsubsections
+\newlength{\subwidth}					
+\setlength{\subwidth}{\textwidth}
+\addtolength{\subwidth}{-1.5\parindent}
+\newcommand{\subhead}[1]{~\vspace{-\parskip}\par\parbox{\subwidth}{\protect\raggedright{\bf #1}}\vspace{-\parskip} \addcontentsline{toc}{subsubsection}{#1}\par}
+
+%-----------------------------------------------------------------
+% Newcommands 
+%-----------------------------------------------------------------
+% The author block, \auth
+%
+% The \auth block works as follows. This is a list with one parameter which represents each author entry
+% (\item) including whatever footnote(s) might apply. The list has no label (that is the items are not
+% enumerated with roman numerals or other symbols), hence the first {} in the declaration. The list is
+% automatically left indented in the list environment and the right margin is set even with the document
+% margin by default, hence the second {} in the declaration in which the spacing is usually defined. In
+% order to keep it from breaking author names the \raggedright qualifier is used within the list environment.
+% This structure sets the author block apart from the paragraph structure of the rest of the document. As
+% the list encounters entries (\items) defined by the parameter (#1) it enters them into the list until it runs
+% out of \item(s). The \par qualifier issues a blank line after the last \item call to end the paragraph in the
+% list environment and return to the document environment with \end{list}. At the very end it issues a
+% \vspace*{-\parskip} MACRO to place an appropriate space between the \auth block and the first paragraph
+% of the article.                     4/1/2011, GTH, GCH
+%
+\newcommand{\auth}[1]{  \begin{list}{}{}   {\raggedright \item #1 \par}   \end{list}\vspace*{-\parskip}  }
+%
+% End of the author block
+
+% The following command puts non-bold stuff in table of contents, and makes math bold in heading in text.
+% Also avoids nutty hyphen breaks by relaxing right justification. See example article.
+\newcommand{\subsecmathbold}[1]{\subsection[#1]{\raggedright \boldmath #1 \unboldmath}}  
+
+% Same but for subsubsections
+\newcommand{\subsubsecmathbold}[1]{\subsubsection[#1]{\raggedright \boldmath #1 \unboldmath}}  
+
+% Same as above, but keeps default right justification.
+\newcommand{\subsectight}[1]{\subsection[#1]{\boldmath #1 \unboldmath}}  
+
+% The following command formats references to other sections in the document.
+%\newcommand{\secref}[1]{(see Sec.~\ref{#1})}
+%holman - removed 'see' from secref command 4/2014
+\newcommand{\secref}[1]{(Sec.~\ref{#1})}
+
+% The following commands permit a figure or a table to be referenced correctly regardless of nesting level.
+% It can float from section to subsection to subsubsection, etc. and it will always be called correctly.
+% Each article MUST have a label in the title. The first argument of the figure or table reference is the 
+% label in the title of the article and the second argument is the figure or table label.
+% The first argument of the figure or table caption is, again, the label in the title and the second argument 
+% is the figure or table caption itself
+
+\newcommand{\figref}[2]{Fig.~\ref{#1}-\ref{#2}}   % Note, this prints "Fig."
+\newcommand{\figcaption}[2]{\refstepcounter{figure} \hfil \parbox{.9\textwidth}{\small Figure~\ref{#1}-\arabic{figure}. #2 }  \hfil}
+\newcommand{\tabref}[2]{Table~\ref{#1}-\ref{#2}}  % Note, this prints "Table."
+\newcommand{\tabcaption}[2]{\refstepcounter{table} \hfil \parbox{.9\textwidth}{\small Table~\ref{#1}-\arabic{table}. #2 }  \hfil}
+
+% The following commands, \degrees, \cpp, \MJ, \MJDemo, \snop, \nonubb, \gp, \LS, \RD require a trailing \ in order 
+% to insert a space afterward. For example, use \MJ at the end of a sentence and \MJ\ in the middle of a sentence.
+%
+\newcommand{\degrees}{$^{\circ}$}                                         % makes a correct degree symbol
+\newcommand{\cpp}{C\protect\raisebox{.25ex}{++}\ }               % formats C++ correctly
+\newcommand{\MJ}{M{\footnotesize AJORANA}}                        % this works for bolding in titles and the toc
+\newcommand{\MJDemo}{D{\footnotesize EMON\-STRAT\-OR}} 	% this works for bolding in titles and the toc
+\newcommand{\snop}{SNO\protect\raisebox{.25ex}{+}}             % formats SNO+ nicely
+\newcommand{\nonubb}  {${0 \nu \beta \beta}$}                       % neutrinoless double beta decay in math mode
+\newcommand{\gp}{$g_P^{}$}                                                % MACRO for the muon boys
+\newcommand{\LS}{$\Lambda_S^{}$}                                     % MACRO for the muon boys
+\newcommand{\RD}{$\Lambda_D^{}$}                                    % MACRO for the muon boys
+\newcommand{\iso}[2]{$^{#1}$#2}                                        % Makes a properly formatted isotope symbol e.g. \iso{28}{Si}
+
+
+% I don't see the following command used anywhere.      4/1/2011, GCH
+% \newcommand{\ms}{\ensuremath{\mbox{m}/\mbox{s}^2}} 
+ 
+%-----------------------------------------------------------------
+% Counters 
+%-----------------------------------------------------------------
+% Reset counters for each new article.
+\newcommand{\renum}{
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}     }
+%
+% The counters for perpage footnotes are now automatically reset using the perpage package so
+% the following command is obsolete.
+%\setcounter{footnote}{0}}      
+%
+%longtable increments the table counter so redefine it to avoid the crash where the table counter increments by 2
+%
+\let\templongtable\longtable
+\renewcommand{\longtable}{\addtocounter{table}{-1} \templongtable}
+%
+% These next two commands allow deep nesting beyond the \subsubsection level using the \paragraph and 
+% \subparagraph levels. It numbers the entries and places them in the table of contents. 1/23/2011, GCH
+%
+\setcounter{secnumdepth}{5}                     	% this part is the numbering index
+\setcounter{tocdepth}{5}                            % this part is the TOC entry
+%
+% End of the deep nesting command structure                                                
+
+%-----------------------------------------------------------------
+% Defines 
+%-----------------------------------------------------------------
+% A useful Journal MACRO
+\def\Journal#1#2#3#4{{#1} {\bf #2}, #3 (#4)}
+
+% Some useful journal names
+\def\ADT{At. Data Nucl. Data Tables}
+\def\ARN{ Annu. Rev. Nucl. Part. Sci.}
+\def\EUP{{ Eur. Phys. J.} A}
+\def\NCA{ Nuovo Cimento}
+\def\NIM{Nucl. Instrum. Methods }
+\def\NIMA{{ Nucl. Instrum. Methods} A }
+\def\NPA{{ Nucl. Phys.} A}
+\def\NPB{{ Nucl. Phys.} B}
+\def\PLB{{ Phys. Lett.}  B}
+\def\PRC{{ Phys. Rev.} C }
+\def\PPN{ Phys. Part. Nucl.}
+\def\PREP{Phys. Rep.}
+\def\PRL{Phys. Rev. Lett.}
+\def\PRD{{ Phys. Rev.} D }
+\def\ZPC{{ Z. Phys.} C }
+
+% End of the annual report preamble2016 MACRO
+
+\begin{document}
