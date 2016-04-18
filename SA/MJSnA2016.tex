@@ -4,10 +4,12 @@
 \underline{M.~Buuck},
 C.~Cuesta,
 J.\,A.~Detwiler,
+Z.~Fu,
 J.~Gruszko,
 \underline{I.~Guinn},
 D.\,A.~Peterson,
 R.\,G.\,H.~Robertson,
+K.\,T.~Ton,
 and T.\,D.~Van Wechel
 }
 
@@ -48,7 +50,7 @@ and T.\,D.~Van Wechel
 
 \hfil  \includegraphics[width=\textwidth]{peakshape.png} \hfil 
 
-\figcaption{MJDSimArticle}{A 2614~keV \iso{208}{Th} calibration peak fit to a gaussian, low-energy tail, and step function.}
+\figcaption{MJDSimArticle}{A 2614~keV \iso{208}{Th} calibration peak fit to a Gaussian, high- and low-energy ExGaussian tails, a step function, and a low-order polynomial background.}
 
 \label{peakshape}
 
@@ -61,7 +63,7 @@ Micah Buuck has primarily focused this year on two simulations- and analysis-rel
 %Micah Buuck has primarily been focused on implementing a pulse-shape-based analysis technique for rejection of background multi-site events. In this capacity, he is a part of the Pulse Shape working group. The technique requires the generation of a ``basis library'' of single-site event pulses, which is then used to accept or reject incoming pulses based on a $\chi^2$ fit. He has successfully implemented the software necessary to generate the basis, and is now working on streamlining the process and applying it to physics data.
 
 Ian Guinn has continued to work on the event builder for the \MJ\ \MJDemo. The event builder has three main responsibilities. First, it converts the raw data files produced by the data acquisition system (ORCA) into ROOT files, known as built files, that are compatible with the \MJ\ software. Second, it combines waveforms and muon veto events that occur at nearby times into a single event, in order to detect coincidences. Finally, it filters out corrupted data that may confuse the main analysis software, a process known as garbage collection. In the last year, Guinn has implemented a builder for the muon veto data. He has also added a checker for built files, which searches for inconsistencies and errors that occur during the building process. Additionally, the event builder is now capable of building multi-sampled waveforms, in which the baseline and falling edge waveforms are sampled at a slower rate than the rising edge. Guinn has also made a number of other improvements and bug-fixes.\newline
-\indent Guinn has also implemented a sophisticated algorithm for \MJ\ that fits peaks in the \MJDemo\ energy spectrum to an analytic peak shape function (see \figref{MJDSimArticle}{peakshape} for an example). The peak shape function is composed of a gaussian, a high-energy exponential tail, a low-energy exponential tail, a flat background, and a step function. The peak fitter is currently being used to calibrate the energy spectrum of the detectors from a \iso{228}{Th} line source. Guinn is currently working on extending the peak fitter to fit multiple peaks simultaneously, which will allow for an automated and more robust energy calibration.
+\indent Guinn has also implemented a sophisticated algorithm for \MJ\ that fits peaks in the \MJDemo\ energy spectrum to an analytic peak shape function (see \figref{MJDSimArticle}{peakshape} for an example). The peak shape function is composed of a Gaussian, high- and low-energy ExGaussian tails, a step function, and a low-order polynomial background. The peak fitter is currently being used to calibrate the energy spectrum of the detectors from a \iso{228}{Th} line source. Guinn is currently working on extending the peak fitter to fit multiple peaks simultaneously, which will allow for an automated and more robust energy calibration.
 
 %\begin{wrapfigure}{l}{0.5\textwidth}
 %\begin{center}
