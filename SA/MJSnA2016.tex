@@ -27,23 +27,33 @@ and T.\,D.~Van Wechel
 
 \end{wrapfigure}
 
-In her role as head of the Data Cleaning and Run Selection working group, Dr. Clara Cuesta has continued to oversee the implementation and evaluation of the Data Cleaning and Run Selection framework for \MJ. Her work in this regard is detailed elsewhere \secref{}.\newline
-\indent Dr. Cuesta has also led the development of a pulse-shape based background suppression technique called A/E which analyzes the ratio of the max current in a pulse to the energy collected. Events that produce a single localized energy deposit \--- such as most \nonubb\ decays \--- will have a larger value of A/E than events that deposit energy in multiple locations inside the same detector. We have shown using \iso{228}{Th} calibration data that we are able to reduce our backgrounds using this technique by more than 50\% (see \figref{MJDSimArticle}{AoE}).
+%In her role as head of the Data Cleaning and Run Selection working group, Dr. Clara Cuesta has continued to oversee the implementation and evaluation of the Data Cleaning and Run Selection framework for \MJ. Her work in this regard is detailed elsewhere \secref{}.\newline
+\indent Dr. Clara Cuesta has led the development of a pulse-shape based background suppression technique called A/E which analyzes the ratio of the max current in a pulse to the energy collected. Events that produce a single localized energy deposit \--- such as most \nonubb\ decays \--- will have a larger value of A/E than events that deposit energy in multiple locations inside the same detector. We have shown using \iso{228}{Th} calibration data that we are able to reduce our backgrounds using this technique by more than 50\% (see \figref{MJDSimArticle}{AoE}).
 
-Julieta Gruszko has collaborated in the development and largely herself implemented a new technique to tag events that occur near the passivated surface of the \MJ\ detectors. The technique compares the decay of waveforms after the rising edge, looking for differences in the effective decay constant. Preliminary results are presented elsewhere \secref{LAAttE}.
+%Julieta Gruszko has collaborated in the development and largely herself implemented a new technique to tag events that occur near the passivated surface of the \MJ\ detectors. The technique compares the decay of waveforms after the rising edge, looking for differences in the effective decay constant. Preliminary results are presented elsewhere \secref{LAAttE}.
 %These events, which could be due to degraded $\alpha$-particles, create some electron-hole pairs in the passivated layer. The holes are collected relatively quickly at the point-contact, but the electrons drift slowly out of the passivated layer, causing a small amount of delayed charge to be collected after the primary rising edge.
 
-\begin{wrapfigure}{l}{0.5\textwidth}
-\begin{center}
-\hfil  \includegraphics[width=.48\textwidth]{M1DUThCombined.pdf} \hfil 
+\begin{figure}[h]
+\begin{minipage}{0.5\textwidth}
+
+\hfil  \includegraphics[width=\textwidth]{M1DUThCombined.pdf} \hfil 
 % the following blank line is important
 
-\end{center}
-\refstepcounter{figure} \hfil \parbox{.5\textwidth}{\small Figure~\ref{MJDSimArticle}-\arabic{figure}. A simulation of the efficiency of the Module 1 array of Ge detectors for detecting thorium contamination in the copper detector unit pieces. The black line shows all energy depositions recorded by the array that do not occur in the dead layer of a detector. The blue line has removed events occurring in multiple detectors, and the red line has additionally removed events that are detectable as multi-site within a single detector. }  \hfil
+\figcaption{MJDSimArticle}{A simulation of the efficiency of the Module 1 array of Ge detectors for detecting thorium contamination in the copper detector unit pieces. The black line shows all energy depositions recorded by the array that do not occur in the dead layer of a detector. The blue line has removed events occurring in multiple detectors, and the red line has additionally removed events that are detectable as multi-site within a single detector.}
 
-\label{sim}  %put label{} after \figcaption{}
+\label{sim}
 
-\end{wrapfigure}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+
+\hfil  \includegraphics[width=\textwidth]{peakshape.png} \hfil 
+
+\figcaption{MJDSimArticle}{A 2614~keV \iso{208}{Th} calibration peak fit to a gaussian, low-energy tail, and step function.}
+
+\label{peakshape}
+
+\end{minipage}
+\end{figure}
 
 Micah Buuck has primarily focused this year on two simulations- and analysis-related activities: a pulse-shape based technique for identifying multi-site backgrounds complementary to A/E, and upgrading the simulations software to produce results on the detector level.\newline
 \indent The pulse-shape technique requires the generation of a ``basis library'' of single-site event pulses, which is then used to accept or reject incoming pulses based on a $\chi^2$ fit. He has successfully implemented the software necessary to generate the basis, and has done so on selected sets of calibration data. He is now in the process of quantifying the acceptance of the technique for various kinds of pulse shapes, and tuning input parameters to achieve optimal distinction between single- and multi-site pulses.\newline
@@ -53,17 +63,17 @@ Micah Buuck has primarily focused this year on two simulations- and analysis-rel
 Ian Guinn has continued to work on the event builder for the \MJ\ \MJDemo. The event builder has three main responsibilities. First, it converts the raw data files produced by the data acquisition system (ORCA) into ROOT files, known as built files, that are compatible with the \MJ\ software. Second, it combines waveforms and muon veto events that occur at nearby times into a single event, in order to detect coincidences. Finally, it filters out corrupted data that may confuse the main analysis software, a process known as garbage collection. In the last year, Guinn has implemented a builder for the muon veto data. He has also added a checker for built files, which searches for inconsistencies and errors that occur during the building process. Additionally, the event builder is now capable of building multi-sampled waveforms, in which the baseline and falling edge waveforms are sampled at a slower rate than the rising edge. Guinn has also made a number of other improvements and bug-fixes.\newline
 \indent Guinn has also implemented a sophisticated algorithm for \MJ\ that fits peaks in the \MJDemo\ energy spectrum to an analytic peak shape function. The peak shape function is composed of a gaussian, a high-energy exponential tail, a low-energy exponential tail, a flat background, and a step function. The peak fitter is currently being used to calibrate the energy spectrum of the detectors from a \iso{228}{Th} line source. Guinn is currently working on extending the peak fitter to fit multiple peaks simultaneously, which will allow for an automated and more robust energy calibration.
 
-\begin{wrapfigure}{l}{0.5\textwidth}
-\begin{center}
-\hfil  \includegraphics[width=.48\textwidth]{peakshape.png} \hfil 
-% the following blank line is important
-
-\end{center}
-\refstepcounter{figure} \hfil \parbox{.5\textwidth}{\small Figure~\ref{MJDSimArticle}-\arabic{figure}. A 2614~keV \iso{208}{Th} calibration peak fit to a gaussian, low-energy tail, and step function. }  \hfil
-
-\label{peakshape}  %put label{} after \figcaption{}
-
-\end{wrapfigure}
+%\begin{wrapfigure}{l}{0.5\textwidth}
+%\begin{center}
+%\hfil  \includegraphics[width=.48\textwidth]{peakshape.png} \hfil 
+%% the following blank line is important
+%
+%\end{center}
+%\refstepcounter{figure} \hfil \parbox{.5\textwidth}{\small Figure~\ref{MJDSimArticle}-\arabic{figure}. A 2614~keV \iso{208}{Th} calibration peak fit to a gaussian, low-energy tail, and step function. }  \hfil
+%
+%\label{peakshape}  %put label{} after \figcaption{}
+%
+%\end{wrapfigure}
 
 %Julieta Gruszko has successfully implemented and begun to use new frequency-domain analysis techniques. She will use the techniques to identify and eliminate noise sources and for data cleaning. The resulting noise curves of detector baselines will be used to characterize the detector, to accurately simulate pulses, and for optimum filtering. The tools she developed this year allow researchers to view noise curves over time, which can be used to identify intermittent noise sources and therefore tag events for data cleaning. Average noise curves taken with the Prototype Cryostat system are being used to identify the optimal electronics setup and laboratory conditions for data taking. For an example, see \figref{MJDSimArticle}{Fluorescent_Lights}.
 %
